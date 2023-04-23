@@ -5,8 +5,7 @@ class AsorbingMarkovChain:
     This class is for discrete-time absorbing Markov chains with a finite discrete state space.
     '''
 
-    def __init__(self, no_states, no_absorbing_states, tm_matrix, N):
-        self.no_states = no_states
+    def __init__(self, no_absorbing_states, tm_matrix, N):
         self.no_absorbing_states = no_absorbing_states
         self.tm_matrix = tm_matrix
         self.N = N
@@ -15,8 +14,6 @@ class AsorbingMarkovChain:
         for row in range(0, self.tm_matrix.shape[0]):
             if np.sum(self.tm_matrix[row]) < 0 or np.sum(self.tm_matrix[row]) > 1:
                 raise ValueError("Input transition matrix is not stochastic")
-        if not (isinstance(self.no_states, int)):
-            raise TypeError("Got non-integer argument for no_states")
         if not (isinstance(self.no_absorbing_states, int)):
             raise TypeError("Got non-integer argument for no_absorbing_states")
         if not (isinstance(self.N, int)):
@@ -76,8 +73,8 @@ class AsorbingMarkovChain:
 
         Parameters
         ----------
-        no_states: int
-            The total number of states in the states space, including absorbing states
+        tm_matrix: numpy array
+            The base transition matrix for the chain
 
         no_absorbing_states: int
             The total number of absorbing states in the state space
@@ -85,16 +82,16 @@ class AsorbingMarkovChain:
         Returns
         -------
         numpy darray
-            Identity matrix of size no_states - no_absorbing_states
+            Identity matrix of size equal to the number of transient states squared
 
         Examples
         --------
-        >>> no_states = 3
+        >>> tm_matrix = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
             [[1. 0.]
             [0. 1.]]
         '''
-        Id = np.identity(self.no_states - self.no_absorbing_states)
+        Id = np.identity(self.tm_matrix.shape[0] - self.no_absorbing_states)
         return Id
 
     def ones_vector(self):
@@ -103,8 +100,8 @@ class AsorbingMarkovChain:
 
         Parameters
         ----------
-        no_states: int
-            The total number of states in the states space, including absorbing states
+        tm_matrix: numpy array
+            The base transition matrix for the chain
 
         no_absorbing_states: int
             The total number of absorbing states in the state space
@@ -112,15 +109,15 @@ class AsorbingMarkovChain:
         Returns
         -------
         numpy darray
-            Vector of 1s of size no_states - no_absorbing_states
+            Vector of 1s of length equal to the number of transient states
 
         Examples
         --------
-        >>> no_states = 3
+        >>> tm_matrix = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
             [1. 1.] 
         '''
-        ones = np.ones(self.no_states - self.no_absorbing_states)
+        ones = np.ones(self.tm_matrix.shape[0]  - self.no_absorbing_states)
         return ones
 
     def fundamental_matrix(self):
