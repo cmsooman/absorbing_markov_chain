@@ -3,12 +3,8 @@
 An absorbing Markov chain is a Markov chain in which every state can reach an absorbing state. An absorbing state is a state that, once entered, cannot be left. States which are not absorbing are termed transient states.
 
 The probability of transitioning from state $i$ to state $j$ is denoted by $p_{i,j}$ and can be estimated in different ways, for example:
-$$
-\begin{itemize}
-    \item Maximum-likelihood;
-    \item Lagrangian.
-\end{itemize}
-$$
+- Maximum-likelihood;
+- Lagrangian.
 
 The transition matrix $P$ with elements representing the probability of transition from state $i$ to state $j$ is:
 
