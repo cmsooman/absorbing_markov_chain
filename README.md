@@ -15,7 +15,7 @@ The transition matrix $P$ with elements representing the probability of transiti
 $$P=\left\lbrack \matrix{
     p_{1,1} & p_{1,2} & \cdots & p_{1,N} \cr
     p_{2,1} & p_{2,2} & \cdots & p_{2,N} \cr
-    \ddots & \ddots & \vdots & \ddots \cr 
+    \vdots & \vdots & \ddots & \vdots \cr 
     p_{N,1} & p_{N,2} & \cdots & p_{N,N}
 } \right\rbrack$$ 
 
@@ -23,6 +23,6 @@ $$P=\left\lbrack \matrix{
 
 The transition matrix $P$ can be written in canonical form:
 
-$$P=\left\lbrack \matrix{Q_{k \times k} & R_{k \times l} \cr 0_{l \times k} & I_{l \times l} \right\rbrack,$$
+$$P=\left\lbrack \matrix{Q_{k \times k} & R_{k \times l} \cr 0_{l \times k} & I_{l \times l}} \right\rbrack,$$
 
-where $Q_{k \times k}$ is the matrix of transition probabilities between transient states, $R_{k \times l}$ is the matrix of transition probabilities from transient states to absorbing states, $0_{l \times k}$ is the matrix of 0s representing transition probabilities from absorbing states to transient states, and $I_{l \times l} $ is the $l \times l $ identity matrix.  
+where $Q_{k \times k}$ is the matrix of transition probabilities between transient states, $R_{k \times l}$ is the matrix of transition probabilities from transient states to absorbing states, $0_{l \times k}$ is the matrix of 0s representing transition probabilities from absorbing states to transient states, and $I_{l \times l}$ is the $l \times l$ identity matrix.  
