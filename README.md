@@ -19,7 +19,7 @@ $$P=\left\lbrack \matrix{
 
 A person enters a casino with £3,000 and decides to gamble £1,000 a time at Black Jack. The person's strategy is to keep playin until the go bust or have £5,000. The probability of winning at Black Jack is 40% (0.4). The state space (using k to denote thousands) is 
 
-$$S = {0, £1k, £2k, £3k, £4k, £5k}$$.
+$$S = \lbrace 0, £1k, £2k, £3k, £4k, £5k \rbrace$$.
 
 The absorbing states are $0$ and $£5k$. So $p_{0,0} = 1$ and $p_{5,5} = 1$. The matrix $P$ is
 
