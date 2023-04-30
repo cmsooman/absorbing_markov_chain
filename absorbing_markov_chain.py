@@ -75,8 +75,7 @@ class AbsorbingMarkovChain:
             [[0.3 0.4]
             [0.1 0.7]]
         """
-        Q_temp = np.delete(self.P_0,self.P_0.shape[0]-1, axis=0)
-        Q = np.delete(Q_temp, Q_temp.shape[1]-1, axis=1)
+        Q = self.P_0[0:self.P_0.shape[0]-self.no_absorbing_states, 0:self.P_0.shape[1]-self.no_absorbing_states]
         return Q
     
     def nontransient_matrix(self):
