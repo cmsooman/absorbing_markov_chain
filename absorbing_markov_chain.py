@@ -98,8 +98,7 @@ class AbsorbingMarkovChain:
             [[0.3]
             [0.2]]
         """
-        R = self.P_0[0:self.P_0.shape[0]-self.no_absorbing_states,self.P_0.shape[1]-self.no_absorbing_states]
-        R.shape = (self.P_0.shape[0]-self.no_absorbing_states, self.no_absorbing_states)
+        R = self.P_0[0:(self.P_0.shape[0]-self.no_absorbing_states), (self.P_0.shape[1]-self.no_absorbing_states):self.P_0.shape[1]]
         return R
 
     def id_matrix(self):
