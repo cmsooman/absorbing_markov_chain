@@ -17,11 +17,11 @@ $$P=\left\lbrack \matrix{
 
 #### Example
 
-A person enters a casino with £3,000 and decides to gamble £1,000 a time at Black Jack. The person's strategy is to keep playin until the go bust or have £5,000. The probability of winning at Black Jack is 40% (0.4). The state space (using k to denote thousands) is 
+A person enters a casino with £30 and decides to gamble £10 a time at Black Jack. The person's strategy is to keep playing until the go bust or have £50. The probability of winning at Black Jack is 40% (0.4). The state space is 
 
-$$S = \lbrace 0, £1k, £2k, £3k, £4k, £5k \rbrace.$$
+$$S = \lbrace 0, £10, £20, £30, £40, £50 \rbrace.$$
 
-The absorbing states are $0$ and $£5k$. So $p_{0,0} = 1$ and $p_{5,5} = 1$. The matrix $P$ is
+The absorbing states are $0$ and $£50$. So $p_{0,0} = 1$ and $p_{5,5} = 1$. The matrix $P$ is
 
 $$P=\left\lbrack \matrix{
     1 & 0 & 0 & 0 & 0 & 0 \cr
