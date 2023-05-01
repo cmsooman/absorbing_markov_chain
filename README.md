@@ -68,3 +68,10 @@ $$Q_{4\times4} = \left\lbrack \matrix{
     0 & 0.6 & 0 & 0.4 \cr
     0 & 0 & 0.6 & 0
 }\right\rbrack$$
+
+$$R_{4\times2} = \left\lbrack \matrix{
+    0.6 & 0 \cr
+    0 & 0 \cr
+    0 & 0 \cr
+    0 & 0.4
+}\right\rbrack$$
