@@ -86,3 +86,9 @@ $$I_{2\times2} = \left\lbrack \matrix{
     0 & 1
 }\right\rbrack.$$
 
+$
+\begin{aligned}
+&x =2 + y + z \\
+&w = r + t+ p + b +6
+\end{aligned}
+$
