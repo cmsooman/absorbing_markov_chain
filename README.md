@@ -39,3 +39,14 @@ The transition matrix $P$ can be written in canonical form:
 $$P=\left\lbrack \matrix{Q_{k \times k} & R_{k \times l} \cr 0_{l \times k} & I_{l \times l}} \right\rbrack,$$
 
 where $Q_{k \times k}$ is the matrix of transition probabilities between transient states, $R_{k \times l}$ is the matrix of transition probabilities from transient states to absorbing states, $0_{l \times k}$ is the matrix of 0s representing transition probabilities from absorbing states to transient states, and $I_{l \times l}$ is the $l \times l$ identity matrix.  
+
+In the case of our above example with the gambler in the casino, we would rewrite the matrix P accordingly:
+
+$$P=\left\lbrack \matrix{
+    p_{1,1} & p_{1,2} & p_{1,3} & p_{1,4} & p_{1,0} & p_{1,5} \cr
+    p_{2,1} & p_{2,2} & p_{2,3} & p_{2,4} & p_{2,0} & p_{2,5} \cr
+    p_{3,1} & p_{3,2} & p_{3,3} & p_{3,4} & p_{3,0} & p_{3,5} \cr
+    p_{4,1} & p_{4,2} & p_{4,3} & p_{4,4} & p_{4,0} & p_{4,5} \cr
+    p_{0,1} & p_{0,2} & p_{0,3} & p_{0,4} & p_{0,0} & p_{0,5} \cr
+    p_{5,1} & p_{5,2} & p_{5,3} & p_{5,4} & p_{5,0} & p_{5,5} \cr
+}\right\rbrack $$
