@@ -75,3 +75,8 @@ $$R_{4\times2} = \left\lbrack \matrix{
     0 & 0 \cr
     0 & 0.4
 }\right\rbrack$$
+
+$$0_{2\times4} = \left\lbrack \matrix{
+    0 & 0 & 0 & 0 \cr
+    0 & 0 & 0 & 0
+}\right\rbrack$$
