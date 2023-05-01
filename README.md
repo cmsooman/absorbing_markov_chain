@@ -62,33 +62,27 @@ $$P=\left\lbrack \matrix{
 
 The different components of the canonical matrix are:
 
-$$Q_{4\times4} = \left\lbrack \matrix{
+$$
+\begin{aligned}
+Q_{4\times4} &= \left\lbrack \matrix{
     0 & 0.4 & 0 & 0 \cr
     0.6 & 0 & 0.4 & 0 \cr
     0 & 0.6 & 0 & 0.4 \cr
     0 & 0 & 0.6 & 0
-}\right\rbrack,$$
-
-$$R_{4\times2} = \left\lbrack \matrix{
+}\right\rbrack,
+R_{4\times2} &= \left\lbrack \matrix{
     0.6 & 0 \cr
     0 & 0 \cr
     0 & 0 \cr
     0 & 0.4
-}\right\rbrack,$$
-
-$$0_{2\times4} = \left\lbrack \matrix{
+}\right\rbrack,
+0_{2\times4} &= \left\lbrack \matrix{
     0 & 0 & 0 & 0 \cr
     0 & 0 & 0 & 0
-}\right\rbrack,$$
-
-$$I_{2\times2} = \left\lbrack \matrix{
+}\right\rbrack,
+I_{2\times2} &= \left\lbrack \matrix{
     1 & 0 \cr
     0 & 1
-}\right\rbrack.$$
-
-$$
-\begin{aligned}
-x &=2 + y + z \\
-w &= r + t+ p + b +6
+}\right\rbrack.
 \end{aligned}
 $$
