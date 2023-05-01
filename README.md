@@ -80,3 +80,9 @@ $$0_{2\times4} = \left\lbrack \matrix{
     0 & 0 & 0 & 0 \cr
     0 & 0 & 0 & 0
 }\right\rbrack$$
+
+$$I_{2\times2} = \left\lbrack \matrix{
+    1 & 0 \cr
+    0 & 1
+}\right\rbrack$$
+
