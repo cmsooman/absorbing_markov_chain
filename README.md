@@ -86,3 +86,11 @@ I_{2\times2} &= \left\lbrack \matrix{
 }\right\rbrack.
 \end{aligned}
 $$
+
+#### Fundamental matrix
+
+A property of an absorbing Markov chain is the expected number of visits to a transient state $j$ starting at a trnasient state $i$ before being absorbed. We could obtain this by summing the matrix $Q_{k\times\k}$ from $0$ to $\inf$. The resulting matrix is called the fundamental matrix:
+
+$$
+F:=\sum_{m=0}^{\inf}Q^m = \left(I_{k\timesk} - Q_{k\timesk} \right)^{-1} 
+$$  
