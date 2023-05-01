@@ -59,3 +59,12 @@ $$P=\left\lbrack \matrix{
     0 & 0 & 0 & 0 & 0 & 1 
 }\right\rbrack
  $$
+
+The different components of the canonical matrix are:
+
+$$Q_{4\times4} = \left\lbrack \matrix{
+    0 & 0.4 & 0 & 0 \cr
+    0.6 & 0 & 0.4 & 0 \cr
+    0 & 0.6 & 0 & 0.4 \cr
+    0 & 0 & 0.6 & 0
+}\right\rbrack$$
