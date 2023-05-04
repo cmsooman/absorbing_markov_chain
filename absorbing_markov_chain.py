@@ -10,7 +10,7 @@ class AbsorbingMarkovChain:
     ----------
     no_absorbing_states : int
         The number of absorbing states in the chain
-    P_0 : numpy darray
+    P_0 : numpy ndarray
         The base transition matrix at time 0
     N : int
         The number of time steps to project the chain
@@ -66,7 +66,7 @@ class AbsorbingMarkovChain:
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             The matrix of transient states
 
         Examples
@@ -89,7 +89,7 @@ class AbsorbingMarkovChain:
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             The matrix of non-transient states
 
         Examples
@@ -115,7 +115,7 @@ class AbsorbingMarkovChain:
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             Identity matrix of size equal to the number of transient states squared
 
         Examples
@@ -142,7 +142,7 @@ class AbsorbingMarkovChain:
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             Vector of 1s of length equal to the number of transient states
 
         Examples
@@ -161,14 +161,14 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        id_matrix(): numpy darray
+        id_matrix(): numpy ndarray
             Inherited from id_matrix function
-        transient_matrix(): numpy darray
+        transient_matrix(): numpy ndarray
             Inherited from transient_matrix function
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             The fundamental matrix
 
         Examples
@@ -190,14 +190,14 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        fundamental_matrix(): numpy darray
+        fundamental_matrix(): numpy ndarray
             Inherited from fundamental_matrix function
-        ones(): numpy darray
+        ones(): numpy ndarray
             Inherited from ones function
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             Vector of expected number of steps for eac transient state before being absorbed
 
         Examples
@@ -215,14 +215,14 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        P_0: numpy darray
+        P_0: numpy ndarray
             The base transition matrix
         N: int
             Number of time steps for the projection
 
         Returns
         -------
-        numpy darray
+        numpy ndarray
             Matrix containing the values of P^0 to the power N
 
         Examples
