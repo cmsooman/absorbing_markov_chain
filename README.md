@@ -89,8 +89,8 @@ $$
 
 #### Fundamental matrix
 
-A property of an absorbing Markov chain is the expected number of visits to a transient state $j$ starting at a trnasient state $i$ before being absorbed. We could obtain this by summing the matrix $Q_{k \times k}$ from $0$ to $\infty$. The resulting matrix is called the fundamental matrix:
+A property of an absorbing Markov chain is the expected number of visits to a transient state $j$ starting at a transient state $i$ before being absorbed. We could obtain this by summing the matrix $Q_{k \times k}$ from $0$ to $\infty$. The resulting matrix is called the fundamental matrix:
 
 $$
-F:=\sum_{m=0}^{\infty}Q^m = \left(I_{k \times k} - Q_{k \times k} \right)^{-1} 
+F:=\sum_{m=0}^{\infty}Q_{k \times k}^m = \left(I_{k \times k} - Q_{k \times k} \right)^{-1} 
 $$  
