@@ -3,7 +3,11 @@ from absorbing_markov_chain import AbsorbingMarkovChain
 from generate_test_matrices import random_stochastic_matrix
 import numpy as np
 
-mat1 = random_stochastic_matrix(4, np.array([[0,0,0,1]]))
+mat1 = random_stochastic_matrix(4, 1, np.array([[0,0,0,1]]))
+mat2 = random_stochastic_matrix(5, 2, np.array([[0,0,0,1,0], [0,0,0,0,1]]))
+mat3 = random_stochastic_matrix(5, 1, np.array([[0,0,0,0,1]]))
+mat4 = random_stochastic_matrix(4, 2, np.array([[0,0,1,0], [0,0,0,1]]))
+mat5 = random_stochastic_matrix(7, 4, np.array([[0,0,0,1,0,0,0], [0,0,0,0,1,0,0], [0,0,0,0,0,1,0], [0,0,0,0,0,0,1]]))
 
 class AbsorbingMarkovChainTest(unittest.TestCase):
     
