@@ -94,3 +94,9 @@ A property of an absorbing Markov chain is the expected number of visits to a tr
 $$
 F:=\sum_{m=0}^{\infty}Q_{k \times k}^m = \left(I_{k \times k} - Q_{k \times k} \right)^{-1} 
 $$  
+
+**Proof**
+
+$$
+\lim _{n\rightarrow \infty }(\mathrm {Id} -T)S_{n}=\lim _{n\rightarrow \infty }\left(\sum _{k=0}^{n}T^{k}-\sum _{k=0}^{n}T^{k+1}\right)=\lim _{n\rightarrow \infty }\left(\mathrm {Id} -T^{n+1}\right)=\mathrm {Id}
+$$
