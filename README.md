@@ -98,5 +98,5 @@ $$
 **Proof**
 
 $$
-\lim_{n\rightarrow \infty }(\mathrm {I_{k \times k}} -Q_{k \times k})\sum_{m=0}^{\infty}Q_{k \times k}^m = \lim_{n\rightarrow \infty }\left(\sum_{k=0}^{n}T^{k}-\sum_{k=0}^{n}T^{k+1}\right)=\lim_{n\rightarrow \infty }\left(\mathrm{Id} -T^{n+1}\right)=\mathrm{Id}
+\lim_{n\rightarrow \infty }(\mathrm {I_{k \times k}} -Q_{k \times k})\sum_{m=0}^{n}Q_{k \times k}^m = \lim_{n\rightarrow \infty }\left(\sum_{m=0}^{n}Q_{k \times k}^{m}-\sum_{m=0}^{n}Q_{k \times k}^{m+1}\right)=\lim_{n\rightarrow \infty }\left(\mathrm{I_{k \times k}} -Q_{k \times k}^{n+1}\right)=\mathrm{I_{k \times k}}
 $$
