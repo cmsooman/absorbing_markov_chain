@@ -98,5 +98,5 @@ $$
 **Proof**
 
 $$
-\lim _{n\rightarrow \infty }(\mathrm {Id} -T)S_{n}=\lim _{n\rightarrow \infty }\left(\sum _{k=0}^{n}T^{k}-\sum _{k=0}^{n}T^{k+1}\right)=\lim _{n\rightarrow \infty }\left(\mathrm {Id} -T^{n+1}\right)=\mathrm {Id}
+\lim_{n\rightarrow \infty }(\mathrm {Id} -T)S_{n}=\lim_{n\rightarrow \infty }\left(\sum_{k=0}^{n}T^{k}-\sum_{k=0}^{n}T^{k+1}\right)=\lim_{n\rightarrow \infty }\left(\mathrm{Id} -T^{n+1}\right)=\mathrm{Id}
 $$
