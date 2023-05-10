@@ -32,5 +32,26 @@ class AbsorbingMarkovChainTest(unittest.TestCase):
         test1 = AbsorbingMarkovChain(1,np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]]),100000)
         np.testing.assert_array_almost_equal(test1.forward_matrix(), np.array([[0.0,0.0,1.0],[0.0,0.0,1.0],[0.0,0.0,1.0]]))
 
+    def test_mat1_identity(self):
+        test1 = AbsorbingMarkovChain(1,mat1, 1)
+        np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0,0], [0,1,0], [0,0,1]]))
+
+    def test_mat2_identity(self):
+        test1 = AbsorbingMarkovChain(2,mat2, 1)
+        np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0,0], [0,1,0], [0,0,1]]))
+
+    def test_mat3_identity(self):
+        test1 = AbsorbingMarkovChain(1,mat3, 1)
+        np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]))
+
+    def test_mat4_identity(self):
+        test1 = AbsorbingMarkovChain(2,mat4, 1)
+        np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0], [0,1]]))
+
+    def test_mat5_identity(self):
+        test1 = AbsorbingMarkovChain(4,mat5, 1)
+        np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0,0], [0,1,0], [0,0,1]]))
+
+
 if __name__ == '__main__':
     unittest.main()
