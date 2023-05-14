@@ -52,6 +52,50 @@ class AbsorbingMarkovChainTest(unittest.TestCase):
         test1 = AbsorbingMarkovChain(4,mat5, 1)
         np.testing.assert_array_equal(test1.id_matrix(), np.array([[1,0,0], [0,1,0], [0,0,1]]))
 
+    def test_mat1_ones(self):
+        test1 = AbsorbingMarkovChain(1,mat1,1)
+        np.testing.assert_array_equal(test1.ones_vector(), np.array([1,1,1]))
+
+    def test_mat2_ones(self):
+        test1 = AbsorbingMarkovChain(2,mat2,1)
+        np.testing.assert_array_equal(test1.ones_vector(), np.array([1,1,1]))
+
+    def test_mat3_ones(self):
+        test1 = AbsorbingMarkovChain(1,mat3,1)
+        np.testing.assert_array_equal(test1.ones_vector(), np.array([1,1,1,1]))
+
+    def test_mat4_ones(self):
+        test1 = AbsorbingMarkovChain(2,mat4,1)
+        np.testing.assert_array_equal(test1.ones_vector(), np.array([1,1]))
+
+    def test_mat5_ones(self):
+        test1 = AbsorbingMarkovChain(4,mat5,1)
+        np.testing.assert_array_equal(test1.ones_vector(), np.array([1,1,1]))
+
+    def test_mat1_proj_sum(self):
+        test1 = AbsorbingMarkovChain(1,mat1,5)
+        test1_row_sums = test1.forward_matrix().sum(1)
+        np.testing.assert_array_almost_equal(test1_row_sums, np.array([1,1,1,1]))
+
+    def test_mat2_proj_sum(self):
+        test1 = AbsorbingMarkovChain(2,mat2,31)
+        test1_row_sums = test1.forward_matrix().sum(1)
+        np.testing.assert_array_almost_equal(test1_row_sums, np.array([1,1,1,1,1]))
+
+    def test_mat3_proj_sum(self):
+        test1 = AbsorbingMarkovChain(1,mat3,100)
+        test1_row_sums = test1.forward_matrix().sum(1)
+        np.testing.assert_array_almost_equal(test1_row_sums, np.array([1,1,1,1,1]))
+
+    def test_mat4_proj_sum(self):
+        test1 = AbsorbingMarkovChain(2,mat4,173)
+        test1_row_sums = test1.forward_matrix().sum(1)
+        np.testing.assert_array_almost_equal(test1_row_sums, np.array([1,1,1,1]))
+
+    def test_mat5_proj_sum(self):
+        test1 = AbsorbingMarkovChain(4,mat5,250)
+        test1_row_sums = test1.forward_matrix().sum(1)
+        np.testing.assert_array_almost_equal(test1_row_sums, np.array([1,1,1,1,1,1,1]))
 
 if __name__ == '__main__':
     unittest.main()
