@@ -36,6 +36,9 @@ class AbsorbingMarkovChain:
     absorb_times()
         Calculates the expected number of steps before being absorbed in any absorbing state when
         starting in a transient state i
+
+    absorb_probs()
+        Calculates to probability of being absorbed when starting in transient state i
     
     forward_matrix()
         Calculates powers of the base transition matrix P_0 for N = 1, 2, 3,.....
@@ -183,6 +186,10 @@ class AbsorbingMarkovChain:
             raise ValueError("Fundamental matrix must be invertible")
         return F
     
+    def fundamental_matrix_var(self):
+        F_var = np.matmul(self.fundamental_matrix(), (2*(np.diag(np.diag(self.fundamental_matrix())))-self.id_matrix())) - np.multiply(self.fundamental_matrix(), self.fundamental_matrix())
+        return F_var
+
     def absorb_times(self):
         """
         Calculates the expected number of steps before being absorbed in any absorbing state when
@@ -208,6 +215,13 @@ class AbsorbingMarkovChain:
         """
         ex_times_absorb = np.matmul(self.fundamental_matrix(),self.ones_vector())
         return ex_times_absorb
+
+    def absorb_probs(self):
+        """
+        Calculates to probability of being absorbed when starting in transient state i
+        """
+        prob_of_absorb = np.matmul(self.fundamental_matrix(), self.nontransient_matrix())
+        return prob_of_absorb
 
     def forward_matrix(self):
         """
