@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class AbsorbingMarkovChain:
     """
     This class is for discrete-time absorbing Markov chains with a finite discrete state space.
@@ -52,7 +53,10 @@ class AbsorbingMarkovChain:
         Calculates powers of the base transition matrix P_0 for N = 1, 2, 3,.....
 
     """
-    def __init__(self, no_absorbing_states: int, P_0: np.ndarray, N: int) -> None:
+
+    def __init__(
+        self, no_absorbing_states: int, P_0: np.ndarray, N: int
+    ) -> None:
         self.no_absorbing_states = no_absorbing_states
         self.P_0 = P_0
         self.N = N
@@ -86,7 +90,10 @@ class AbsorbingMarkovChain:
             [[0.3 0.4]
             [0.1 0.7]]
         """
-        Q = self.P_0[0:self.P_0.shape[0]-self.no_absorbing_states, 0:self.P_0.shape[1]-self.no_absorbing_states]
+        Q = self.P_0[
+            0 : self.P_0.shape[0] - self.no_absorbing_states,
+            0 : self.P_0.shape[1] - self.no_absorbing_states,
+        ]
         return Q
 
     def nontransient_matrix(self) -> np.ndarray:
@@ -109,7 +116,10 @@ class AbsorbingMarkovChain:
             [[0.3]
             [0.2]]
         """
-        R = self.P_0[0:(self.P_0.shape[0]-self.no_absorbing_states), (self.P_0.shape[1]-self.no_absorbing_states):self.P_0.shape[1]]
+        R = self.P_0[
+            0 : (self.P_0.shape[0] - self.no_absorbing_states),
+            (self.P_0.shape[1] - self.no_absorbing_states) : self.P_0.shape[1],
+        ]
         return R
 
     def id_matrix(self) -> np.ndarray:
@@ -162,13 +172,13 @@ class AbsorbingMarkovChain:
         >>> no_absorbing_states = 1
             [1. 1.]
         """
-        ones = np.ones(self.P_0.shape[0]  - self.no_absorbing_states)
+        ones = np.ones(self.P_0.shape[0] - self.no_absorbing_states)
         return ones
 
     def fundamental_matrix(self) -> np.ndarray:
         """
-        Calculates the fundamental matrix whose entries represent the expected number of visits to a transient state j
-        starting from state i before being asorbed
+        Calculates the fundamental matrix whose entries represent the expected number of visits to
+        a transient state j starting from state i before being asorbed
 
         Parameters
         ----------
@@ -195,7 +205,13 @@ class AbsorbingMarkovChain:
         return F
 
     def fundamental_matrix_var(self) -> np.ndarray:
-        F_var = np.matmul(self.fundamental_matrix(), (2*(np.diag(np.diag(self.fundamental_matrix())))-self.id_matrix())) - np.multiply(self.fundamental_matrix(), self.fundamental_matrix())
+        F_var = np.matmul(
+            self.fundamental_matrix(),
+            (
+                2 * (np.diag(np.diag(self.fundamental_matrix())))
+                - self.id_matrix()
+            ),
+        ) - np.multiply(self.fundamental_matrix(), self.fundamental_matrix())
         return F_var
 
     def absorb_times(self) -> np.ndarray:
@@ -221,7 +237,9 @@ class AbsorbingMarkovChain:
         >>> ones() = np.array([1,1])
         [4.11764706 4.70588235]
         """
-        ex_times_absorb = np.matmul(self.fundamental_matrix(),self.ones_vector())
+        ex_times_absorb = np.matmul(
+            self.fundamental_matrix(), self.ones_vector()
+        )
         return ex_times_absorb
 
     def absorb_times_var(self) -> np.ndarray:
@@ -229,14 +247,19 @@ class AbsorbingMarkovChain:
         Calculates the variance on the number of steps before being absorbed when starting
         in transient state i
         """
-        ex_times_absorb_var = np.matmul((2*self.fundamental_matrix() - self.id_matrix()),self.absorb_times()) - np.multiply(self.absorb_times(), self.absorb_times())
+        ex_times_absorb_var = np.matmul(
+            (2 * self.fundamental_matrix() - self.id_matrix()),
+            self.absorb_times(),
+        ) - np.multiply(self.absorb_times(), self.absorb_times())
         return ex_times_absorb_var
 
     def absorb_probs(self) -> np.ndarray:
         """
         Calculates the probability of being absorbed when starting in transient state i
         """
-        prob_of_absorb = np.matmul(self.fundamental_matrix(), self.nontransient_matrix())
+        prob_of_absorb = np.matmul(
+            self.fundamental_matrix(), self.nontransient_matrix()
+        )
         return prob_of_absorb
 
     def forward_matrix(self) -> np.ndarray:
@@ -263,5 +286,5 @@ class AbsorbingMarkovChain:
         [0.05189 0.25103 0.69708]
         [0.      0.      1.     ]]
         """
-        P_N = np.linalg.matrix_power(self.P_0,self.N)
+        P_N = np.linalg.matrix_power(self.P_0, self.N)
         return P_N
