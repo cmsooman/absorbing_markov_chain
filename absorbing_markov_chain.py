@@ -11,9 +11,9 @@ class AbsorbingMarkovChain:
     ----------
     no_absorbing_states : int
         The number of absorbing states in the chain
-    P_0 : numpy ndarray
+    p_0 : numpy ndarray
         The base transition matrix at time 0
-    N : int
+    n : int
         The number of time steps to project the chain
 
     Methods
@@ -50,25 +50,25 @@ class AbsorbingMarkovChain:
         Calculates to probability of being absorbed when starting in transient state i
 
     forward_matrix()
-        Calculates powers of the base transition matrix P_0 for N = 1, 2, 3,.....
+        Calculates powers of the base transition matrix p_0 for n = 1, 2, 3,.....
 
     """
 
     def __init__(
-        self, no_absorbing_states: int, P_0: np.ndarray, N: int
+        self, no_absorbing_states: int, p_0: np.ndarray, n: int
     ) -> None:
         self.no_absorbing_states = no_absorbing_states
-        self.P_0 = P_0
-        self.N = N
-        if self.P_0.shape[0] != self.P_0.shape[1]:
+        self.p_0 = p_0
+        self.n = n
+        if self.p_0.shape[0] != self.p_0.shape[1]:
             raise ValueError("Input transition matrix must be square")
-        for row in range(0, self.P_0.shape[0]):
-            if np.sum(self.P_0[row]) < 0 or np.sum(self.P_0[row]) > 1:
+        for row in range(0, self.p_0.shape[0]):
+            if np.sum(self.p_0[row]) < 0 or np.sum(self.p_0[row]) > 1:
                 raise ValueError("Input transition matrix is not stochastic")
         if not isinstance(self.no_absorbing_states, int):
             raise TypeError("Got non-integer argument for no_absorbing_states")
-        if not isinstance(self.N, int):
-            raise TypeError("Got non-integer argument for N")
+        if not isinstance(self.n, int):
+            raise TypeError("Got non-integer argument for n")
 
     def transient_matrix(self) -> np.ndarray:
         """
@@ -76,7 +76,7 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        P_0: numpy array
+        p_0: numpy array
             The base transition matrix for the chain
 
         Returns
@@ -86,15 +86,15 @@ class AbsorbingMarkovChain:
 
         Examples
         --------
-        >>> P_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
             [[0.3 0.4]
             [0.1 0.7]]
         """
-        Q = self.P_0[
-            0 : self.P_0.shape[0] - self.no_absorbing_states,
-            0 : self.P_0.shape[1] - self.no_absorbing_states,
+        q_matrix = self.p_0[
+            0 : self.p_0.shape[0] - self.no_absorbing_states,
+            0 : self.p_0.shape[1] - self.no_absorbing_states,
         ]
-        return Q
+        return q_matrix
 
     def nontransient_matrix(self) -> np.ndarray:
         """
@@ -102,7 +102,7 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        P_0: numpy array
+        p_0: numpy array
             The base transition matrix for the chain
 
         Returns
@@ -112,15 +112,15 @@ class AbsorbingMarkovChain:
 
         Examples
         --------
-        >>> P_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
             [[0.3]
             [0.2]]
         """
-        R = self.P_0[
-            0 : (self.P_0.shape[0] - self.no_absorbing_states),
-            (self.P_0.shape[1] - self.no_absorbing_states) : self.P_0.shape[1],
+        r_matrix = self.p_0[
+            0 : (self.p_0.shape[0] - self.no_absorbing_states),
+            (self.p_0.shape[1] - self.no_absorbing_states) : self.p_0.shape[1],
         ]
-        return R
+        return r_matrix
 
     def id_matrix(self) -> np.ndarray:
         """
@@ -128,7 +128,7 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        P_0: numpy array
+        p_0: numpy array
             The base transition matrix for the chain
 
         no_absorbing_states: int
@@ -141,13 +141,13 @@ class AbsorbingMarkovChain:
 
         Examples
         --------
-        >>> P_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
             [[1. 0.]
             [0. 1.]]
         """
-        Id = np.identity(self.P_0.shape[0] - self.no_absorbing_states)
-        return Id
+        id_matrix = np.identity(self.p_0.shape[0] - self.no_absorbing_states)
+        return id_matrix
 
     def ones_vector(self) -> np.ndarray:
         """
@@ -155,7 +155,7 @@ class AbsorbingMarkovChain:
 
         Parameters
         ----------
-        P_0: numpy array
+        p_0: numpy array
             The base transition matrix for the chain
 
         no_absorbing_states: int
@@ -168,11 +168,11 @@ class AbsorbingMarkovChain:
 
         Examples
         --------
-        >>> P_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
             [1. 1.]
         """
-        ones = np.ones(self.P_0.shape[0] - self.no_absorbing_states)
+        ones = np.ones(self.p_0.shape[0] - self.no_absorbing_states)
         return ones
 
     def fundamental_matrix(self) -> np.ndarray:
@@ -199,20 +199,20 @@ class AbsorbingMarkovChain:
         [[1.76470588 2.35294118]
         [0.58823529 4.11764706]]
         """
-        F = np.linalg.inv(self.id_matrix() - self.transient_matrix())
-        if np.linalg.det(F) == 0:
+        f_matrix = np.linalg.inv(self.id_matrix() - self.transient_matrix())
+        if np.linalg.det(f_matrix) == 0:
             raise ValueError("Fundamental matrix must be invertible")
-        return F
+        return f_matrix
 
     def fundamental_matrix_var(self) -> np.ndarray:
-        F_var = np.matmul(
+        f_var = np.matmul(
             self.fundamental_matrix(),
             (
                 2 * (np.diag(np.diag(self.fundamental_matrix())))
                 - self.id_matrix()
             ),
         ) - np.multiply(self.fundamental_matrix(), self.fundamental_matrix())
-        return F_var
+        return f_var
 
     def absorb_times(self) -> np.ndarray:
         """
@@ -264,27 +264,27 @@ class AbsorbingMarkovChain:
 
     def forward_matrix(self) -> np.ndarray:
         """
-        Calculates powers of the base transition matrix P_0 for N = 1, 2, 3,.....
+        Calculates powers of the base transition matrix p_0 for n = 1, 2, 3,.....
 
         Parameters
         ----------
-        P_0: numpy ndarray
+        p_0: numpy ndarray
             The base transition matrix
-        N: int
+        n: int
             Number of time steps for the projection
 
         Returns
         -------
         numpy ndarray
-            Matrix containing the values of P^0 to the power N
+            Matrix containing the values of P^0 to the power n
 
         Examples
         --------
-        >>> P_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
-        >>> N = 5
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> n = 5
         [[0.04347 0.20756 0.74897]
         [0.05189 0.25103 0.69708]
         [0.      0.      1.     ]]
         """
-        P_N = np.linalg.matrix_power(self.P_0, self.N)
-        return P_N
+        p_n = np.linalg.matrix_power(self.p_0, self.n)
+        return p_n
