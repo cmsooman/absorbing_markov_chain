@@ -1,5 +1,6 @@
-import numpy as np
+"""This modules provides the class AbsorbingMarkovChain"""
 
+import numpy as np
 
 class AbsorbingMarkovChain:
     """
@@ -205,6 +206,14 @@ class AbsorbingMarkovChain:
         return f_matrix
 
     def fundamental_matrix_var(self) -> np.ndarray:
+        """
+        Calculates the variance of the the fundamental matrix
+
+        Returns
+        -------
+        numpy ndarray
+            The variance of the fundamental matrix
+        """
         f_var = np.matmul(
             self.fundamental_matrix(),
             (
