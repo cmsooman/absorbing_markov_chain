@@ -14,7 +14,7 @@ class AbsorbingMarkovChain:
         The number of absorbing states in the chain
     p_0 : numpy ndarray
         The base transition matrix at time 0
-    n : int
+    no_years_project : int
         The number of time steps to project the chain
 
     Methods
@@ -56,11 +56,11 @@ class AbsorbingMarkovChain:
     """
 
     def __init__(
-        self, no_absorbing_states: int, p_0: np.ndarray, n: int
+        self, no_absorbing_states: int, p_0: np.ndarray, no_years_project: int
     ) -> None:
         self.no_absorbing_states = no_absorbing_states
         self.p_0 = p_0
-        self.n = n
+        self.no_years_project = no_years_project
         if self.p_0.shape[0] != self.p_0.shape[1]:
             raise ValueError("Input transition matrix must be square")
         for row in range(0, self.p_0.shape[0]):
@@ -68,8 +68,8 @@ class AbsorbingMarkovChain:
                 raise ValueError("Input transition matrix is not stochastic")
         if not isinstance(self.no_absorbing_states, int):
             raise TypeError("Got non-integer argument for no_absorbing_states")
-        if not isinstance(self.n, int):
-            raise TypeError("Got non-integer argument for n")
+        if not isinstance(self.no_years_project, int):
+            raise TypeError("Got non-integer argument for no_years_project")
 
     def transient_matrix(self) -> np.ndarray:
         """
@@ -279,7 +279,7 @@ class AbsorbingMarkovChain:
         ----------
         p_0: numpy ndarray
             The base transition matrix
-        n: int
+        no_years_project: int
             Number of time steps for the projection
 
         Returns
@@ -290,10 +290,10 @@ class AbsorbingMarkovChain:
         Examples
         --------
         >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
-        >>> n = 5
+        >>> no_years_project = 5
         [[0.04347 0.20756 0.74897]
         [0.05189 0.25103 0.69708]
         [0.      0.      1.     ]]
         """
-        p_n = np.linalg.matrix_power(self.p_0, self.n)
+        p_n = np.linalg.matrix_power(self.p_0, self.no_years_project)
         return p_n
