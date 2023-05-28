@@ -16,13 +16,9 @@ def random_stochastic_matrix(n, m, absorb_rows):
     numpy ndarray
     
     """
-    #mat = np.random.random((n,n))
     rsum = None
-#    timeout = time.time() + 10
     while (np.any(rsum != 1)):
         mat = np.random.random((n,n))
-#        if time.time() > timeout:
-#            break
         mat = mat / mat.sum(1)[:, np.newaxis]
         rsum = mat.sum(1)
 
