@@ -14,8 +14,6 @@ class AbsorbingMarkovChain:
         The number of absorbing states in the chain
     p_0 : numpy ndarray
         The base transition matrix at time 0
-    no_years_project : int
-        The number of time steps to project the chain
 
     Methods
     -------
@@ -33,7 +31,7 @@ class AbsorbingMarkovChain:
 
     fundamental_matrix()
         Calculates the fundamental matrix whose entries represent the expected number of visits to
-        a transient state j starting from state i before being asorbed
+        a transient state j starting from state i before being absorbed
 
     fundamental_matrix_var()
         Calculates the variance of the expected number of visits to a transient state j starting
@@ -56,11 +54,10 @@ class AbsorbingMarkovChain:
     """
 
     def __init__(
-        self, no_absorbing_states: int, p_0: np.ndarray, no_years_project: int
+        self, no_absorbing_states: int, p_0: np.ndarray#, no_years_project: int
     ) -> None:
         self.no_absorbing_states = no_absorbing_states
         self.p_0 = p_0
-        self.no_years_project = no_years_project
         if self.p_0.shape[0] != self.p_0.shape[1]:
             raise ValueError("Input transition matrix must be square")
         for row in range(0, self.p_0.shape[0]):
@@ -68,17 +65,10 @@ class AbsorbingMarkovChain:
                 raise ValueError("Input transition matrix is not stochastic")
         if not isinstance(self.no_absorbing_states, int):
             raise TypeError("Got non-integer argument for no_absorbing_states")
-        if not isinstance(self.no_years_project, int):
-            raise TypeError("Got non-integer argument for no_years_project")
 
     def transient_matrix(self) -> np.ndarray:
         """
         Calculates the matrix of transient states from the base transition matrix
-
-        Parameters
-        ----------
-        p_0: numpy array
-            The base transition matrix for the chain
 
         Returns
         -------
@@ -101,11 +91,6 @@ class AbsorbingMarkovChain:
         """
         Calculates the matrix of non-transient states from the base transition matrix
 
-        Parameters
-        ----------
-        p_0: numpy array
-            The base transition matrix for the chain
-
         Returns
         -------
         numpy ndarray
@@ -127,14 +112,6 @@ class AbsorbingMarkovChain:
         """
         Calculates the identity matrix for use in calculating the expected times to absorb
 
-        Parameters
-        ----------
-        p_0: numpy array
-            The base transition matrix for the chain
-
-        no_absorbing_states: int
-            The total number of absorbing states in the state space
-
         Returns
         -------
         numpy ndarray
@@ -154,14 +131,6 @@ class AbsorbingMarkovChain:
         """
         Calculates a vector with every element equal to 1
 
-        Parameters
-        ----------
-        p_0: numpy array
-            The base transition matrix for the chain
-
-        no_absorbing_states: int
-            The total number of absorbing states in the state space
-
         Returns
         -------
         numpy ndarray
@@ -179,14 +148,7 @@ class AbsorbingMarkovChain:
     def fundamental_matrix(self) -> np.ndarray:
         """
         Calculates the fundamental matrix whose entries represent the expected number of visits to
-        a transient state j starting from state i before being asorbed
-
-        Parameters
-        ----------
-        id_matrix(): numpy ndarray
-            Inherited from id_matrix function
-        transient_matrix(): numpy ndarray
-            Inherited from transient_matrix function
+        a transient state j starting from state i before being absorbed
 
         Returns
         -------
@@ -207,12 +169,19 @@ class AbsorbingMarkovChain:
 
     def fundamental_matrix_var(self) -> np.ndarray:
         """
-        Calculates the variance of the the fundamental matrix
+        Calculates the variance of the fundamental matrix
 
         Returns
         -------
         numpy ndarray
-            The variance of the fundamental matrix
+            The variances of the fundamental matrix
+
+        Examples
+        --------
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> no_absorbing_states = 1
+        [[1.34948097, 11.48788927],
+        [1.14186851, 12.83737024]]
         """
         f_var = np.matmul(
             self.fundamental_matrix(),
@@ -228,17 +197,10 @@ class AbsorbingMarkovChain:
         Calculates the expected number of steps before being absorbed in any absorbing state when
         starting in a transient state i
 
-        Parameters
-        ----------
-        fundamental_matrix(): numpy ndarray
-            Inherited from fundamental_matrix function
-        ones(): numpy ndarray
-            Inherited from ones function
-
         Returns
         -------
         numpy ndarray
-            Vector of expected number of steps for eac transient state before being absorbed
+            Vector of expected number of steps for each transient state before being absorbed
 
         Examples
         --------
@@ -255,6 +217,18 @@ class AbsorbingMarkovChain:
         """
         Calculates the variance on the number of steps before being absorbed when starting
         in transient state i
+
+        Returns
+        -------
+        numpy ndarray
+            Matrix containing the variances for each expected time to absorb
+        
+        Examples
+        --------    
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> no_absorbing_states = 1
+        [15.60553633, 16.74740484]
+        
         """
         ex_times_absorb_var = np.matmul(
             (2 * self.fundamental_matrix() - self.id_matrix()),
@@ -265,20 +239,30 @@ class AbsorbingMarkovChain:
     def absorb_probs(self) -> np.ndarray:
         """
         Calculates the probability of being absorbed when starting in transient state i
+        
+        Returns
+        -------
+        numpy ndarray
+
+        Examples
+        --------
+        >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
+        >>> no_absorbing_states = 1
+        [1.],
+        [1.]]        
+
         """
         prob_of_absorb = np.matmul(
             self.fundamental_matrix(), self.nontransient_matrix()
         )
         return prob_of_absorb
 
-    def forward_matrix(self) -> np.ndarray:
+    def forward_matrix(self, no_years_project) -> np.ndarray:
         """
         Calculates powers of the base transition matrix p_0 for n = 1, 2, 3,.....
 
         Parameters
         ----------
-        p_0: numpy ndarray
-            The base transition matrix
         no_years_project: int
             Number of time steps for the projection
 
@@ -295,5 +279,7 @@ class AbsorbingMarkovChain:
         [0.05189 0.25103 0.69708]
         [0.      0.      1.     ]]
         """
-        p_n = np.linalg.matrix_power(self.p_0, self.no_years_project)
+        p_n = np.linalg.matrix_power(self.p_0, no_years_project)
+        if not isinstance(self.no_years_project, int):
+            raise TypeError("Got non-integer argument for no_years_project")
         return p_n
