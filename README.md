@@ -103,4 +103,4 @@ $$
 
 #### Contributors
 
-@cmsooman
+* [@cmsooman](https://github.com/cmsooman)
