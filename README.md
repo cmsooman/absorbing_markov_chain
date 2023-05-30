@@ -1,4 +1,13 @@
-### Class for discrete time Markov processes with finite state space.
+### absorbing-markov-chain
+
+absorbing-markov-chain is a tool that allows data scientists to make inference about discrete time absorbing Markov chains with finite state space.
+
+### Prerequisites
+
+* Packages listed in requirements.txt 
+* Knowledge of Markov chains
+* Linear alebra skills
+* Experience of working with numpy arrays
 
 An absorbing Markov chain is a Markov chain in which every state can reach an absorbing state. An absorbing state is a state that, once entered, cannot be left. States which are not absorbing are termed transient states.
 
