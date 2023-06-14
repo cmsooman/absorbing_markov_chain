@@ -1,5 +1,7 @@
 import numpy as np
-#import time
+
+# import time
+
 
 def random_stochastic_matrix(n, m, absorb_rows):
     """
@@ -14,14 +16,14 @@ def random_stochastic_matrix(n, m, absorb_rows):
     Returns
     -------
     numpy ndarray
-    
+
     """
     rsum = None
-    while (np.any(rsum != 1)):
-        mat = np.random.random((n,n))
+    while np.any(rsum != 1):
+        mat = np.random.random((n, n))
         mat = mat / mat.sum(1)[:, np.newaxis]
         rsum = mat.sum(1)
 
-    mat_temp = mat[0:(n-m)]
+    mat_temp = mat[0 : (n - m)]
     mat = np.concatenate([mat_temp, absorb_rows], axis=0)
     return mat
