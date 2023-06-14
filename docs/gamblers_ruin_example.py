@@ -48,16 +48,19 @@ print(long_run_matrix)
 
 count = 1
 current_matrix = gamblers_ruin_problem.forward_matrix(count)
-updated_matrix = gamblers_ruin_problem.forward_matrix(count +1)
-while not np.allclose(current_matrix, updated_matrix, rtol=1e-05, atol=1e-08, equal_nan=False):
+updated_matrix = gamblers_ruin_problem.forward_matrix(count + 1)
+while not np.allclose(
+    current_matrix, updated_matrix, rtol=1e-05, atol=1e-08, equal_nan=False
+):
     current_matrix = gamblers_ruin_problem.forward_matrix(count)
-    updated_matrix = gamblers_ruin_problem.forward_matrix(count +1)
-    count +=1
+    updated_matrix = gamblers_ruin_problem.forward_matrix(count + 1)
+    count += 1
 print(count)
-print(updated_matrix[0:4, 4:updated_matrix.shape[1]])
+print(updated_matrix[0:4, 4 : updated_matrix.shape[1]])
 
+# Notice how this is equal to the solution matrix
 print(solution_matrix)
 
+# Calculate the expected number of steps prior to being absorbed
 avg_absorb_times = gamblers_ruin_problem.absorb_times()
 print(avg_absorb_times)
-
