@@ -2,6 +2,7 @@
 
 import numpy as np
 
+
 class AbsorbingMarkovChain:
     """
     This class is for discrete-time absorbing Markov chains with a finite discrete state space.
@@ -54,7 +55,7 @@ class AbsorbingMarkovChain:
     """
 
     def __init__(
-        self, no_absorbing_states: int, p_0: np.ndarray#, no_years_project: int
+        self, no_absorbing_states: int, p_0: np.ndarray  # , no_years_project: int
     ) -> None:
         self.no_absorbing_states = no_absorbing_states
         self.p_0 = p_0
@@ -185,10 +186,7 @@ class AbsorbingMarkovChain:
         """
         f_var = np.matmul(
             self.fundamental_matrix(),
-            (
-                2 * (np.diag(np.diag(self.fundamental_matrix())))
-                - self.id_matrix()
-            ),
+            (2 * (np.diag(np.diag(self.fundamental_matrix()))) - self.id_matrix()),
         ) - np.multiply(self.fundamental_matrix(), self.fundamental_matrix())
         return f_var
 
@@ -208,9 +206,7 @@ class AbsorbingMarkovChain:
         >>> ones() = np.array([1,1])
         [4.11764706 4.70588235]
         """
-        ex_times_absorb = np.matmul(
-            self.fundamental_matrix(), self.ones_vector()
-        )
+        ex_times_absorb = np.matmul(self.fundamental_matrix(), self.ones_vector())
         return ex_times_absorb
 
     def absorb_times_var(self) -> np.ndarray:
@@ -222,13 +218,13 @@ class AbsorbingMarkovChain:
         -------
         numpy ndarray
             Matrix containing the variances for each expected time to absorb
-        
+
         Examples
-        --------    
+        --------
         >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
         [15.60553633, 16.74740484]
-        
+
         """
         ex_times_absorb_var = np.matmul(
             (2 * self.fundamental_matrix() - self.id_matrix()),
@@ -239,7 +235,7 @@ class AbsorbingMarkovChain:
     def absorb_probs(self) -> np.ndarray:
         """
         Calculates the probability of being absorbed when starting in transient state i
-        
+
         Returns
         -------
         numpy ndarray
@@ -249,7 +245,7 @@ class AbsorbingMarkovChain:
         >>> p_0 = np.array([[0.3, 0.4, 0.3],[0.1, 0.7, 0.2],[0, 0, 1]])
         >>> no_absorbing_states = 1
         [1.],
-        [1.]]        
+        [1.]]
 
         """
         prob_of_absorb = np.matmul(
