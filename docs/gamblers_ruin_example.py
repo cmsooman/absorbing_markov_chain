@@ -21,11 +21,11 @@ P_c = np.array(
         [0, 0, 0, 0, 1, 0],
         [0, 0, 0, 0, 0, 1],
     ]
-)  # te transition matrix rearranged to Canonical form
+)  # the transition matrix rearranged to Canonical form
 
 # Determine the number of bets the gambler makes before the game is over
 
-# First we create an object using te class. We know that there are 2 absorbing states and we can set the number of projected years to 1 for now
+# First we create an object using the class. We know that there are 2 absorbing states and we can set the number of projected years to 1 for now
 gamblers_ruin_problem = AbsorbingMarkovChain(2, P_c)
 
 # First we calculate the fundamental matrix F
@@ -36,11 +36,11 @@ print(F)
 expected_num_games = gamblers_ruin_problem.absorb_times()
 print(expected_num_games[2])
 
-# We can also calculate the probabilty of the gambler facing financial ruin or reaching £50 when starting with £30
+# We can also calculate the probability of the gambler facing financial ruin or reaching £50 when starting with £30
 solution_matrix = gamblers_ruin_problem.absorb_probs()
 print(solution_matrix[2])
 
-# So the probabilty of the gambler starting with £30 facing financial ruin is 64% and the probability of reaching £50 is 36%.
+# So the probability of the gambler starting with £30 facing financial ruin is 64% and the probability of reaching £50 is 36%.
 
 # As a sense check, find the power n at which the matrix remains stable
 long_run_matrix = gamblers_ruin_problem.forward_matrix(1)

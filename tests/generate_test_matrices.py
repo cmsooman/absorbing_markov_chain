@@ -1,7 +1,5 @@
 import numpy as np
 
-# import time
-
 
 def random_stochastic_matrix(n, m, absorb_rows):
     """

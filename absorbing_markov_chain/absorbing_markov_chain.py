@@ -54,9 +54,7 @@ class AbsorbingMarkovChain:
 
     """
 
-    def __init__(
-        self, no_absorbing_states: int, p_0: np.ndarray  # , no_years_project: int
-    ) -> None:
+    def __init__(self, no_absorbing_states: int, p_0: np.ndarray) -> None:
         self.no_absorbing_states = no_absorbing_states
         self.p_0 = p_0
         if self.p_0.shape[0] != self.p_0.shape[1]:
