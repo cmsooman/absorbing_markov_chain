@@ -101,6 +101,11 @@ $$
 
 The variance for the expected number of visits to a transient state $j$ starting at a transient state $i$ efore being absorbed is
 
+$$
+Var(F) = F\left(2F_{diag} - I_{k \times k} \right) - F_{sq} 
+$$
+
+where $F_{diag}$ is the diagonal matrix with the same diagonal as $F$, and $F_{sq}$ is the Hamand product of $F$ with itself, i.e. every element of $F$ is squared.
 
 The expected number of steps before being absorbed in an absorbing state when starting in a transient state $i$ is simply the $i$th entry of vector
 
