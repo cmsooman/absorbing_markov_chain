@@ -106,3 +106,9 @@ F \mathbf{1}
 $$ 
 
 in which $\mathbf{1}$ is a vector of 1s of length $k$.
+
+The probability of eventually being absorbed in the absorbing state $j$ when starting in transient state $i$ is 
+
+$$
+FR
+$$
