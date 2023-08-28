@@ -99,4 +99,10 @@ $$
 \lim_{n\rightarrow \infty }(\mathrm {I_{k \times k}} -Q_{k \times k})\sum_{m=0}^{n}Q_{k \times k}^m = \lim_{n\rightarrow \infty }\left(\sum_{m=0}^{n}Q_{k \times k}^{m}-\sum_{m=0}^{n}Q_{k \times k}^{m+1}\right)=\lim_{n\rightarrow \infty }\left(\mathrm{I_{k \times k}} -Q_{k \times k}^{n+1}\right)=\mathrm{I_{k \times k}}
 $$
 
+The expected number of steps before being absorbed in an absorbing state when starting in a transient state $i$ is simply the $i$th entry of vector
 
+$$
+F \boldmath{1}
+$$ 
+
+in which $\boldmath{1}$ is a vector of 1s of length $k$.
