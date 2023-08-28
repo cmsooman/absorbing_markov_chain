@@ -101,9 +101,6 @@ $$
 
 The variance for the expected number of visits to a transient state $j$ starting at a transient state $i$ efore being absorbed is
 
-$$
-
-$$
 
 The expected number of steps before being absorbed in an absorbing state when starting in a transient state $i$ is simply the $i$th entry of vector
 
