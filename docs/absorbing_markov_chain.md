@@ -102,7 +102,7 @@ $$
 The expected number of steps before being absorbed in an absorbing state when starting in a transient state $i$ is simply the $i$th entry of vector
 
 $$
-F \boldmath{1}
+F \mathbf{1}
 $$ 
 
-in which $\boldmath{1}$ is a vector of 1s of length $k$.
+in which $\mathbf{1}$ is a vector of 1s of length $k$.
